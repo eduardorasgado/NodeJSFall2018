@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Asincronismo</title>
+</head>
+<body>
+    Good things
+    <script>
+        console.log('a');
+        console.log('b');
+        setTimeout(() =>
+        {
+            console.log('b');
+        }, 0);
+
+        console.log('c');
+
+        setTimeout(() =>
+        {
+            console.log('d')
+        }, 2000);
+
+        // Emulando un conjunto de tareas abultadas
+        // for (let i = 0; i < 10000000000; i++) {
+        //
+        // }
+    </script>
+</body>
+</html>
