@@ -9,9 +9,10 @@ class Persona
 
     saludar(fn)
     {
-        console.log(`Hola, me llamo ${this.nombre}`)
+        var { nombre, apellido } = this
+        console.log(`Hola, me llamo ${nombre}`)
         // si nos pasaron una funcion
-        if(fn) fn(this.nombre,this.apellido, false)
+        if(fn) fn(nombre,apellido, false)
     }
 
     soyAlto()
@@ -33,8 +34,8 @@ class Desarrollador extends Persona
     {
         var nombre = this.nombre
         var apellido = this.apellido
-        console.log(`Hola, me llamo ${this.nombre} ${this.apellido} y soy desarrollador/a!`)
-        if(fn) fn(this.nombre,this.apellido, true)
+        console.log(`Hola, me llamo ${nombre} ${apellido} y soy desarrollador/a!`)
+        if(fn) fn(nombre,apellido, true)
     }
 }
 
