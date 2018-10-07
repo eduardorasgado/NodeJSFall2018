@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Callbacks in JS</title>
 </head>
 <body>
     <script
@@ -10,7 +10,20 @@
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <script>
+        // console.log($)
+        const API_URL = "https://swapi.co/api/";
+        const PEOPLE_URL = "people/:id";
 
+        const urlReq = `${API_URL}${PEOPLE_URL.replace(':id', 1)}`;
+        const OPTIONS = { crossDomain: true };
+        const onPeopleResponse = function (data)
+        {
+            // arguments es una variable que reciben todas las funciones en js
+            // console.log(arguments);
+            document.write(`Hola, este personaje es: ${data.name}`);
+        };
+        // CALLBACK CON JQUERY
+        $.get(urlReq, OPTIONS, onPeopleResponse);
     </script>
 </body>
 </html>
