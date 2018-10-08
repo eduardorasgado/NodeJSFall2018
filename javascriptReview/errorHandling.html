@@ -20,7 +20,11 @@
     {
         const PEOPLE = `${API_URL}${PEOPLE_URL.replace(':id',id)}`;
 
-        $.get(PEOPLE, OPTIONS, callback);
+        $.get(PEOPLE, OPTIONS, callback).fail(() =>
+        {
+            // EN CASO DE ERROR
+            console.log(`sucedio un error, no se puede obtener ${id}`)
+        });
     }
 
     // CALLBACK HELL!!!
@@ -45,7 +49,11 @@
                     id = id[id.length - 2];
                     console.log(`Hola, yo soy: ${character.name}, id: ${id}`);
 
-                    obtenerPersonaje(5)
+                    obtenerPersonaje(5, function (character){
+                        let id = character.url.split("/");
+                        id = id[id.length - 2];
+                        console.log(`Hola, yo soy: ${character.name}, id: ${id}`);
+                    })
                 })
             })
         })
