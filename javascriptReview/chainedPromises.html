@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chained Promises</title>
+</head>
+<body>
+<img src="promises.png" alt="">
+<script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script>
+
+    //PROMESAS
+
+    const API_URL = "https://swapi.co/api/";
+    const PEOPLE_URL = "people/:id";
+
+    const OPTIONS = { crossDomain: true };
+
+    // Se llama en el catch de obtenerPersonaje
+    function onError(id)
+    {
+        console.log(`ERROR AL PROCESAR LA REQUEST DEL PERSONAJE: ${id}`);
+    }
+
+    // FUNCION DE JQUERY PARA HACER UN REQUEST A TRAVES DE PROMESAS
+    function obtenerPersonaje(id)
+    {
+        return new Promise((resolve, reject) =>
+        {
+            const PEOPLE = `${API_URL}${PEOPLE_URL.replace(':id',id)}`;
+            $
+                .get(PEOPLE, OPTIONS, function (character)
+                {
+                    resolve(character)
+                })
+                .fail(() => reject(id));
+        });
+    }
+
+    // FUNCION AYUDA PARA MANEJO DE LLAMADAS
+    function charDesc(character)
+    {
+        // EN CASO DE EXITO EN LA PROMESA
+        let id = character.url.split("/");
+        id = id[id.length - 2];
+        console.log(`Hola, yo soy: ${character.name}, id: ${id}`);
+    }
+
+    // MANDANDO A LLAMAR LA PROMESA
+    obtenerPersonaje(1)
+        .then((character) =>
+        {
+            // EN CASO DE EXITO EN LA PROMESA
+            charDesc(character);
+
+            return obtenerPersonaje(2);  // LLAMADA PERSONAJE 2
+        })
+        .then((character) =>
+        {
+            // EN CASO DE EXITO EN LA PROMESA
+            charDesc(character);
+
+            return obtenerPersonaje(3); // LLAMADA PERSONAJE 3
+        })
+        .then((character) =>
+        {
+            charDesc(character);
+        })
+        .catch((id) =>
+        {
+            // EN CASO DE FALLAR SE LLAMA A UNA FUNCION AYUDA
+            onError(id);
+        })
+
+</script>
+</body>
+</html>
