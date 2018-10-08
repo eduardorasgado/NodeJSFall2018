@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Callbacks II</title>
+</head>
+<body>
+<script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script>
+    const API_URL = "https://swapi.co/api/";
+    const PEOPLE_URL = "people/:id";
+
+    const OPTIONS = { crossDomain: true };
+
+    // FUNCION DE JQUERY PARA HACER UN REQUEST
+    function obtenerPersonaje(id, callback)
+    {
+        const PEOPLE = `${API_URL}${PEOPLE_URL.replace(':id',id)}`;
+
+        $.get(PEOPLE, OPTIONS, callback);
+    }
+
+    // CALLBACK HELL!!!
+    // TAMBIEN ESTO ROMPE CON EL PARALELISMO DE JS
+    obtenerPersonaje(1, function(character) {
+        let id = character.url.split("/");
+        id = id[id.length - 2];
+        console.log(`Hola, yo soy: ${character.name}, id: ${id}`);
+
+        obtenerPersonaje(2, function (character) {
+            let id = character.url.split("/");
+            id = id[id.length - 2];
+            console.log(`Hola, yo soy: ${character.name}, id: ${id}`);
+
+            obtenerPersonaje(3, function (character) {
+                let id = character.url.split("/");
+                id = id[id.length - 2];
+                console.log(`Hola, yo soy: ${character.name}, id: ${id}`);
+
+                obtenerPersonaje(4, function (character) {
+                    let id = character.url.split("/");
+                    id = id[id.length - 2];
+                    console.log(`Hola, yo soy: ${character.name}, id: ${id}`);
+
+                    obtenerPersonaje(5)
+                })
+            })
+        })
+    })
+
+</script>
+</body>
+</html>
