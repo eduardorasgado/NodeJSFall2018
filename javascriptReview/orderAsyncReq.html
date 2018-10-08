@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order in callback responses</title>
+</head>
+<body>
+<script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script>
+    const API_URL = "https://swapi.co/api/";
+    const PEOPLE_URL = "people/:id";
+
+    // en respuesta a la request por jquery
+    const onPeopleResponse = function (character)
+    {
+        // consiguiendo el penultimo elemento del url del response
+        // este es: url -> https://.../id -> lo partimos entre los /
+        // y obtenemos el id
+        let id = character.url.split("/");
+        id = id[id.length - 2];
+        console.log(`Hola, yo soy: ${character.name}, id: ${id}`);
+    };
+
+    const OPTIONS = { crossDomain: true };
+    function obtenerPersonaje(id)
+    {
+        const PEOPLE = `${API_URL}${PEOPLE_URL.replace(':id',id)}`;
+        $.get(PEOPLE, OPTIONS, onPeopleResponse);
+    }
+
+    obtenerPersonaje(1);
+    obtenerPersonaje(2);
+    obtenerPersonaje(3);
+    setTimeout(()=>
+    {
+        obtenerPersonaje(4);
+    }, 2000);
+    setTimeout(()=>
+    {
+        obtenerPersonaje(5);
+    },4000);
+
+
+</script>
+</body>
+</html>

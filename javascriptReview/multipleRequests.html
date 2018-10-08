@@ -13,36 +13,34 @@
         const API_URL = "https://swapi.co/api/";
         const PEOPLE_URL = "people/:id";
 
-        // en respuesta a la request por jquery
-        const onPeopleResponse = function (character)
-        {
-            // consiguiendo el penultimo elemento del url del response
-            // este es: url -> https://.../id -> lo partimos entre los /
-            // y obtenemos el id
-            let id = character.url.split("/");
-            id = id[id.length - 2];
-            console.log(`Hola, yo soy: ${character.name}, id: ${id}`);
-        };
-
         const OPTIONS = { crossDomain: true };
-        function obtenerPersonaje(id)
+
+        // FUNCION DE JQUERY PARA HACER UN REQUEST
+        function obtenerPersonaje(id, callback)
         {
             const PEOPLE = `${API_URL}${PEOPLE_URL.replace(':id',id)}`;
-            $.get(PEOPLE, OPTIONS, onPeopleResponse)
+
+            $.get(PEOPLE, OPTIONS, function (character)
+            {
+                let id = character.url.split("/");
+                id = id[id.length - 2];
+                console.log(`Hola, yo soy: ${character.name}, id: ${id}`);
+
+                if (callback) callback();
+            });
         }
 
-        obtenerPersonaje(1);
-        obtenerPersonaje(2);
-        obtenerPersonaje(3);
-        setTimeout(()=>
-        {
-            obtenerPersonaje(4);
-        }, 2000);
-        setTimeout(()=>
-        {
-            obtenerPersonaje(5);
-        },4000);
-
+        // CALLBACK HELL!!!
+        // TAMBIEN ESTO ROMPE CON EL PARALELISMO DE JS
+        obtenerPersonaje(1, function() {
+            obtenerPersonaje(2, function () {
+                obtenerPersonaje(3, function () {
+                    obtenerPersonaje(4, function () {
+                        obtenerPersonaje(5)
+                    })
+                })
+            })
+        })
 
     </script>
 </body>
