@@ -62,7 +62,7 @@ body {
     position: absolute;
     top: calc(50% - 50px);
     left: calc(50% - 210px);
-    transition: .5s;
+    transition: 1s;
     outline: none;
 }
 
