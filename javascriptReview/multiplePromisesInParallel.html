@@ -50,8 +50,13 @@
     }
 
     // MANDANDO A LLAMAR LA PROMESA
-    var ids = [1,2,3,4,5,6,7];
-
+    let ids = [1,2,3,4,5,6,7];
+    let promesas = ids.map(id => obtenerPersonaje(id))
+    // manejando promesas en forma de arrays
+    Promise
+        .all(promesas)
+    .then(characters => characters.map((character) => charDesc(character)))
+    .catch(onError)
 </script>
 </body>
 </html>
