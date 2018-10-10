@@ -17,6 +17,9 @@ class Juego
 
     inicializar()
     {
+        // para que no se pierda el contexto de la ventana dentro de
+        // la funcion agregarEventosClick
+        this.elegirColor = this.elegirColor.bind(this)
         BTN_EMPEZAR.classList.add('hide');
         this.nivel = 1;
         this.colores = {
@@ -41,6 +44,7 @@ class Juego
     siguienteNivel()
     {
         this.iluminarSecuencia();
+        this.agregarEventosClick();
     }
 
     transformarNumeroAColor(numero)
@@ -72,7 +76,7 @@ class Juego
         }
     }
 
-    iluminarColor()
+    iluminarColor(color)
     {
         // mandado a llamar por el ciclo for de iluminarSecuencia
         // toma el objeto del documento HTML
@@ -86,6 +90,22 @@ class Juego
         // funcion mandada a llamar por iluminarColor
         // dentro de un settimeout
         this.colores[color].classList.remove('light');
+    }
+
+    agregarEventosClick()
+    {
+        // funcion que se ejecuta asincronicamente
+        // atamos un event listener, y aqui usualmente this se ata a el boton de color
+        // asi que para uqe no se confunda, regresamos this a window, esto con bind
+        this.colores.celeste.addEventListener('click', this.elegirColor);
+        this.colores.violeta.addEventListener('click', this.elegirColor);
+        this.colores.naranja.addEventListener('click', this.elegirColor);
+        this.colores.verde.addEventListener('click', this.elegirColor);
+    }
+
+    elegirColor(event)
+    {
+        console.log(event);
     }
 }
 
