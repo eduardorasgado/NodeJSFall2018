@@ -20,6 +20,7 @@ class Juego
 
     inicializar()
     {
+        this.siguienteNivel = this.siguienteNivel.bind(this);
         // para que no se pierda el contexto de la ventana dentro de
         // la funcion agregarEventosClick
         this.elegirColor = this.elegirColor.bind(this)
@@ -50,9 +51,15 @@ class Juego
     siguienteNivel()
     {
     	this.subnivel = 0;
-        this.iluminarSecuencia();
-        // leer las entradas del usuario
-        this.agregarEventosClick();
+    	// Retardando un poco la iluminacion justo despues de picar
+        // el boton de comenzar a jugar
+        setTimeout(() =>
+        {
+            this.iluminarSecuencia();
+            // leer las entradas del usuario
+            this.agregarEventosClick();
+        }, 500);
+
     }
 
     transformarNumeroAColor(numero)
@@ -149,7 +156,8 @@ class Juego
 	        	if(this.nivel == (ULTIMO_NIVEL - 1)){
 	        		// GANA
 	        	} else {
-	        		setTimeout(() => this.siguienteNivel(), 1000);
+	        	    // esperar antes del siguente nivel
+	        		setTimeout(this.siguienteNivel, 1000);
         		}
         	}
         }
