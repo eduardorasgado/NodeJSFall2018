@@ -6,8 +6,7 @@ const violeta = document.getElementById('violeta');
 const naranja = document.getElementById('naranja');
 const verde = document.getElementById('verde');
 
-
-const ULTIMO_NIVEL = 10;
+const ULTIMO_NIVEL = 2;
 
 class Juego
 {
@@ -112,10 +111,10 @@ class Juego
         // funcion que se ejecuta asincronicamente
         // atamos un event listener, y aqui usualmente this se ata a el boton de color
         // asi que para uqe no se confunda, regresamos this a window, esto con bind
-        this.colores.celeste.addEventListener('click', this.elegirColor.bind(this));
-        this.colores.violeta.addEventListener('click', this.elegirColor.bind(this));
-        this.colores.naranja.addEventListener('click', this.elegirColor.bind(this));
-        this.colores.verde.addEventListener('click', this.elegirColor.bind(this));
+        this.colores.celeste.addEventListener('click', this.elegirColor);
+        this.colores.violeta.addEventListener('click', this.elegirColor);
+        this.colores.naranja.addEventListener('click', this.elegirColor);
+        this.colores.verde.addEventListener('click', this.elegirColor);
     }
 
     eliminarEventosClick()
@@ -137,24 +136,64 @@ class Juego
     		case 'naranja': return 2;
     		case 'verde': return 3;
     	}
-    }    
+    }
+
+    again()
+    {
+        swal('De nuevo?!')
+            .then(() =>
+            {
+                // comenzar de nuevo
+                empezarJuego();
+            })
+
+    }
+    // si gana
+    ganaJuego()
+    {
+        // swal devuelve una promesa
+        swal('Wow!', 'Le has ganado a la matrix')
+            .then(() =>
+            {
+                this.again();
+            });
+
+    }
+
+    // si pierde
+    pierdeJuego()
+    {
+        swal('Boo!', 'Perdiste :C')
+            .then(() =>
+            {
+                this.eliminarEventosClick();
+                this.again();
+            });
+    }
 
     elegirColor(event)
     {
-        console.log(event);
+        // console.log(event);
         const nombreColor = event.target.dataset.color;
         console.log(nombreColor);
         const numeroColor = this.transformarColorANumero(nombreColor);
-        console.log(numeroColor);
+        // console.log(numeroColor);
         this.iluminarColor(nombreColor);
         // Si el ususario toco bien el boton que tenia que tocar
-        if(numeroColor == this.secuencia[this.subnivel]) {
+        console.log("numeroCOlor: ", numeroColor);
+        console.log("this.secuencia: ", this.secuencia[this.subnivel]);
+        if(numeroColor === this.secuencia[this.subnivel])
+        {
         	this.subnivel++;
-        	if(this.subnivel == this.nivel){
+        	if(this.subnivel == this.nivel)
+        	{
 	        	this.nivel++;
 	        	this.eliminarEventosClick();
-	        	if(this.nivel == (ULTIMO_NIVEL - 1)){
+                //NIVEL ACTUAL(que es un indice) == ULTIMO NIVEL?
+	        	if(this.nivel == (ULTIMO_NIVEL + 1)){
 	        		// GANA
+                    setTimeout(() => this.ganaJuego(), 1000);
+
 	        	} else {
 	        	    // esperar antes del siguente nivel
 	        		setTimeout(this.siguienteNivel, 1000);
@@ -162,11 +201,15 @@ class Juego
         	}
         }
         // en caso de que no se haya tocado el boton correcto
-        else {
+        else
+            {
         	// PIERDE
+            setTimeout(() => this.pierdeJuego(), 1000);
         }
     }
 }
+
+swal('Bienvenido A SymonSaysNoGemu!')
 
 function empezarJuego()
 {
