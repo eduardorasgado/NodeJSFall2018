@@ -1,0 +1,20 @@
+{
+  "name": "externalmodules",
+  "version": "1.0.0",
+  "description": "Lesson to practice with external modules",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Node",
+    "External",
+    "Modules",
+    "Javascript"
+  ],
+  "author": "Eduardo Rasgado",
+  "license": "MIT",
+  "dependencies": {
+    "cowsay": "^1.3.1"
+  }
+}
