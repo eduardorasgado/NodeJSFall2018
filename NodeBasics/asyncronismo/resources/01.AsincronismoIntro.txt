@@ -1,0 +1,18 @@
+************************
+Introduccion a las funciones asíncronas
+************************
+Las funciones asíncronas en terminos de sincronizado pueden serr:
+Sincronas:
+    De accion bloqueante del hilo e proceso.
+    No libera recursos hasta terminar.
+Asíncronas:
+    De acción no bloqueante del hilo de procesop (por delegación)
+    Permite ejecución de otras instrucciones mientras finaliza.
+
+Las implementaciones asíncronas se utilizan para delegar tareas intensivas en ciclos
+de CPU, como por ejemplo:
+    Cifrado
+    Compresión
+    Proceso de datos
+    Petición de red(HTTPS, DNS, etc)
+    Peticiones a servicios (Base de datos, etc).
