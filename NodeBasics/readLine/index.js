@@ -22,7 +22,7 @@ const AskQuestion = (rl, question) =>
 {
     //Se manda a llamar en AkForm,
     // promesa que evalua cada pregunta que se tiene en la interfaz de readline
-    return new Promise((res, rej) => rl.question(question, (answer) => resolve(answer)));
+    return new Promise((res, rej) => rl.question(question, (answer) => res(answer)));
 };
 
 const AskForm = function(questions)
@@ -58,4 +58,4 @@ AskForm(q)
         // ya que el array de resultados lleno
         // usamos todos y los imprimimos
         console.log(`Hola ${q[0]} ${q[1]}, edad: ${q[2]}`)
-    })
+    });
