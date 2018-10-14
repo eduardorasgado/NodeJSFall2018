@@ -1,0 +1,17 @@
+{
+  "name": "asyncawaitbase",
+  "version": "1.0.0",
+  "description": "A project to learn async-await principles",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "async-await",
+    "node",
+    "functions",
+    "modules"
+  ],
+  "author": "Eduardo Rasgado",
+  "license": "MIT"
+}
