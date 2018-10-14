@@ -1,0 +1,17 @@
+{
+  "name": "readlineuse",
+  "version": "1.0.0",
+  "description": "Use of readline module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "readline",
+    "module",
+    "node",
+    "javascript"
+  ],
+  "author": "Eduardo Rasgado",
+  "license": "MIT"
+}
