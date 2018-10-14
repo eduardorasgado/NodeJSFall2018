@@ -8,7 +8,7 @@ module.exports = {
     {
         setTimeout(() =>
         {
-            callback(nombre)
+            console.log(callback(nombre));
         }, 2000);
     },
 
