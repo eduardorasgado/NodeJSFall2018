@@ -1,0 +1,16 @@
+{
+  "name": "filesystemlib",
+  "version": "1.0.0",
+  "description": "to practice the fl use",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "FileSystem",
+    "module",
+    "node"
+  ],
+  "author": "Eduardo Rasgado",
+  "license": "MIT"
+}
