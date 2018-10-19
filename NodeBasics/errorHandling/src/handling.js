@@ -19,6 +19,10 @@ module.exports = {
                 // mistaken assumption: thrrowing here...
                 if(err)
                 {
+                    // MALA PRACTICA PARA MANEJO DE ERRORES
+                    // el try and catch no va a capturar este throw
+                    // porque el try and catch esta fuera del contexto
+                    //de esta ejecucion asincrona
                     throw `THis is a sync ${err}`;
                 }
             });
@@ -35,6 +39,9 @@ module.exports = {
             if(err)
             {
                 console.log(`This error-first callback`, err);
+                // BUENA PRACTICA DE MANEJO DE ERRORES
+                // SIN UN TRY AND CATCH PERO CON UN RETURN DENTRO DE ESTE IF
+                // Y UN MANEJO DE err
                 return;
             }
             console.log(data);

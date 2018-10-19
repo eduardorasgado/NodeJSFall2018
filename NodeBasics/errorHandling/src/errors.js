@@ -5,6 +5,7 @@ module.exports = {
     standardErr: {
         syntax: function()
         {
+            // procurar no usar(nunca usar) la funcion eval
             return eval("var var a;");
         },
         range: function()
