@@ -1,0 +1,19 @@
+{
+  "name": "childprocessmodule",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "childprocess",
+    "js"
+  ],
+  "author": "Eduardo Rasgado",
+  "license": "MIT",
+  "dependencies": {
+    "yargs": "^12.0.2"
+  }
+}
