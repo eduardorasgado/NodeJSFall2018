@@ -98,3 +98,65 @@ getSalario(100, (err, salario) =>
     }
     console.log(salario);
 });
+
+//===================================implementacion de la tarea
+
+let empleado1 = getEmpleado(1, (err, empleado) =>
+{
+    if(err)
+    {
+        console.log(err);
+        return;
+    }
+    getSalario(empleado.id, (err, emp) =>
+    {
+        if (err)
+        {
+            console.log(err);
+            return;
+        }
+        let paga = {
+            empleado: empleado.nombre,
+            salario: emp.salario
+        };
+        console.log(paga);
+    });
+});
+
+// Implementacion de la solucion acorde al maestro
+let getSal2 = (empleado, callback) =>
+{
+    if (!empleado)
+    {
+        return callback(`No existe salario con el empleado deseado`);
+    }
+    let salarioDB = salarios.find(salario =>
+    {
+        return (salario.id === empleado.id);
+    })
+    if(!salarioDB) callback(`No existe salario con el empleado con id: ${empleado.id}`);
+    // mandando el nombre del empleado y el salario
+    else callback(null,{ nombre: empleado.nombre, salario: salarioDB.salario });
+};
+
+console.log("\n===== classroom implementation =====");
+getSal2(empleados[1], (err, salario) =>
+{
+    if(err)
+    {
+        console.log(err);
+        return;
+    }
+    console.log(salario);
+});
+
+// mandando un empleado que noo existe
+getSal2(empleados[3], (err, salario) =>
+{
+    if(err)
+    {
+        console.log(err);
+        return;
+    }
+    console.log(salario);
+});
