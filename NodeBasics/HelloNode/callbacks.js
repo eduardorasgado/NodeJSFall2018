@@ -12,6 +12,7 @@ let getUsuarioById = (id, callback) => {
     else callback(null, usuario);
 };
 
+// ejecutando la funcion y mandando a traer un callback
 getUsuarioById(14, (err, usuario) =>
 {
     if(err)
@@ -28,6 +29,7 @@ getUsuarioById(12, (err, usuario) =>
 {
     if(err)
     {
+        // manejando el error
         return console.log(err);
     }
     console.log("Ejecutando un callback...\n");
