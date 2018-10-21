@@ -29,7 +29,7 @@ let salarios = [
 
 let getNombre = async( ) =>
 {
-    throw new Error("No existe un nombre para ese usuario");
+    //throw new Error("No existe un nombre para ese usuario");
     return 'Eduardo';
 };
 
