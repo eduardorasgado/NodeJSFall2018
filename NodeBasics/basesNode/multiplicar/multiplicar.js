@@ -2,6 +2,7 @@
 * USO DEL MODULO INTERNO FILE SYSTEM
 * */
 const fs = require("fs");
+const readLine = require("readline");
 //const exp = require("express"); // esto tenemos que instalarlo con npm
 //const myArchivo = require("./archivo"); // modulos propios
 
@@ -20,6 +21,7 @@ module.exports = {
     {
         return new Promise((resolve, reject) =>
         {
+            if(!Number(n)) {reject('No es un numero'); return;}
             let data = this.multiply_me(n);
             fs.writeFile(`./tablas/table${n}.txt`, data, (err) =>
             {
@@ -30,5 +32,37 @@ module.exports = {
                 resolve(`Archivo creado con exito: table${n}.txt`);
             });
         });
+    },
+    AskForm: function(rl)
+    {
+        return new Promise((resolve, reject) =>
+        {
+            rl.question("Inserte la base: ", (answer) =>
+            {
+                if(!answer) reject("No answer.");
+                else resolve(answer)
+            });
+        });
+    },
+    requestMult: function ()
+    {
+        // crearmos una interfaz
+        const rl = readLine.createInterface({
+            input: process.stdin,
+            output: process.stdout
+        });
+
+        return new Promise(
+            async(resolve, reject) =>
+            {
+                const result = await this.AskForm(rl);
+                // cerrando la entrada y salida de las preguntas
+                rl.close();
+                console.log(result);
+                // resolving the request to readline
+                if(!result) reject("No answer.");
+                else resolve(result);
+            }
+        );
     }
 };
