@@ -1,37 +1,7 @@
 //console.log( process.argv );
 const mult = require("./multiplicar/multiplicar");
 // importando el paquete de yargs
-const argv = require("yargs")
-    // crear un comando llamado listar con su descripcion para la consola
-    .command('listar', 'Imprime en consola la tabla de multiplicar',
-        {
-            // los flags que debe contener ese comando
-            base: {
-                // para que sea obligatorio
-                demand: true,
-                alias: 'b'
-            },
-            limite: {
-                alias: 'l',
-                default: 10,
-            }
-        })
-    .command('crear', 'Crea un archivo dentro de una carpeta ./tablas con la tabla de la base',
-        {
-            base:
-                {
-                    demand: true,
-                    alias: 'b'
-                },
-            limite:
-                {
-                    alias: 'l',
-                    default: 10
-                }
-        })
-    // para tener disponible la ayuda del comando
-    .help()
-    .argv;
+const { argv } = require("./config/yargsConf");
 // EJEMPLO DE USO:
 // node main listar --limite 20 --base=6
 // node main --help
