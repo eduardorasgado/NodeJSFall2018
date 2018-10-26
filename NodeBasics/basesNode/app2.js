@@ -12,7 +12,7 @@ let base = parametro.split("=")[1];
 
 // creando el archivo de la tabla de la base requerida
 // por parametro de consola
-mult.saveMultiplication(base)
+mult.saveMultiplication(base, 10)
 .then(message =>
 {
     console.log(message);

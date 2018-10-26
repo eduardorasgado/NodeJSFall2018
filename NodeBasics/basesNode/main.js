@@ -16,6 +16,19 @@ const argv = require("yargs")
                 default: 10,
             }
         })
+    .command('crear', 'Crea un archivo dentro de una carpeta ./tablas con la tabla de la base',
+        {
+            base:
+                {
+                    demand: true,
+                    alias: 'b'
+                },
+            limite:
+                {
+                    alias: 'l',
+                    default: 10
+                }
+        })
     // para tener disponible la ayuda del comando
     .help()
     .argv;
@@ -42,7 +55,7 @@ switch (comandos) {
     case 'crear':
         // esto funcionara con node main crear --base 6
         console.log(`Creando archivo de tabla del ${argv.base} ...`);
-        mult.saveMultiplication(argv.base)
+        mult.saveMultiplication(argv.base, argv.limite)
             .then(message =>
             {
                 console.log(message);

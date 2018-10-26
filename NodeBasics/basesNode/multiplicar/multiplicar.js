@@ -11,27 +11,27 @@ module.exports = {
     listarTabla: function(base, limite)
     {
         //
-        for (let i = 0; i < limite; i++)
+        for (let i = 1; i <= limite; i++)
         {
             let sentence = `${base} x ${i} = ${base*i}`;
             console.log(sentence);
         }
     },
-    multiply_me: function(base)
+    multiply_me: function(base, limite=10)
     {
         let data = '';
-        for (let i = 1; i <= 10; i++) {
+        for (let i = 1; i <= limite; i++) {
             let sentence = `${base} x ${i} = ${base*i}`;
             data+=sentence+"\n";
         }
         return data;
     },
-    saveMultiplication: function(n)
+    saveMultiplication: function(n, l)
     {
         return new Promise((resolve, reject) =>
         {
             if(!Number(n)) {reject('No es un numero'); return;}
-            let data = this.multiply_me(n);
+            let data = this.multiply_me(n, l);
             fs.writeFile(`./tablas/table${n}.txt`, data, (err) =>
             {
                 if(err)
