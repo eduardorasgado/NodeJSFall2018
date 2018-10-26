@@ -26,12 +26,29 @@ const argv = require("yargs")
 
 console.log(`La base es ${argv.base}`);
 console.log(`El limite es ${argv.limite}`);
+//console.log(argv);
 
-//let base = argv.base;
-//
-// mult.saveMultiplication(base)
-//     .then(message =>
-//     {
-//         console.log(message);
-//     })
-//     .catch(err => console.log(err));
+// tomamos el arreglo que aparece al poner opciones asi
+// node main crear listar borrar comer
+let comandos = argv._[0];
+
+switch (comandos) {
+    case 'listar':
+        // node main listar --limite=5 --base=5
+        console.log(`Listar tabla del ${argv.base}...`);
+        mult.listarTabla(argv.base, argv.limite);
+        break;
+
+    case 'crear':
+        // esto funcionara con node main crear --base 6
+        console.log(`Creando archivo de tabla del ${argv.base} ...`);
+        mult.saveMultiplication(argv.base)
+            .then(message =>
+            {
+                console.log(message);
+            })
+            .catch(err => console.log(err));
+        break;
+
+    default: console.log("Comando desconocido");
+}

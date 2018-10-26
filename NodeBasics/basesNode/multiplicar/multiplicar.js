@@ -8,6 +8,15 @@ const readLine = require("readline");
 
 
 module.exports = {
+    listarTabla: function(base, limite)
+    {
+        //
+        for (let i = 0; i < limite; i++)
+        {
+            let sentence = `${base} x ${i} = ${base*i}`;
+            console.log(sentence);
+        }
+    },
     multiply_me: function(base)
     {
         let data = '';
