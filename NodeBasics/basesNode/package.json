@@ -1,0 +1,21 @@
+{
+  "name": "basesnode",
+  "version": "1.0.0",
+  "description": "yargs use to create a txt",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "js",
+    "yargs",
+    "txt",
+    "readline"
+  ],
+  "author": "Eduardo Rasgado",
+  "license": "MIT",
+  "dependencies": {
+    "yargs": "^12.0.2"
+  }
+}
