@@ -13,4 +13,4 @@ module.exports = function(app)
         const query = db.getUserById(request.params.id);
         response.json(query);
     })
-}
+};

@@ -6,8 +6,8 @@ const app = express();
 // loading some settings for server enviroment
 const { PORT } = require("./config");
 
-require("./routes/views")(app);
 require("./routes/api")(app);
+require("./routes/views")(app);
 
 function init()
 {
