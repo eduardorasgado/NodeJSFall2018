@@ -1,5 +1,5 @@
 {
-  "DB_HOST": "",
+  "DB_HOST": "localhost",
   "DB_PORT": 27017,
-  "DB_NAME": "expTestDB"
+  "DB_NAME": "admin"
 }

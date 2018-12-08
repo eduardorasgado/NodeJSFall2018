@@ -3,9 +3,9 @@ const db = require("../database");
 
 module.exports = function(app)
 {
-    app.get(`${API_BASE}/users`,(request, response) =>
+    app.get(`${API_BASE}/users`,async (request, response) =>
     {
-        const query = db.getUsers();
+        const query = await db.getUsers();
         response.json(query);
     }),
     app.get(`${API_BASE}/user/:id`,(request, response) =>
