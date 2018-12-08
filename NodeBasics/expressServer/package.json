@@ -1,0 +1,19 @@
+{
+  "name": "expressserver",
+  "version": "1.0.0",
+  "description": "A simple express server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "keywords": [
+    "server",
+    "http"
+  ],
+  "author": "Eduardo Rasgado Ruiz",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
