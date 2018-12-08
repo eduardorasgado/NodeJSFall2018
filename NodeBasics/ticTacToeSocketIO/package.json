@@ -1,0 +1,23 @@
+{
+  "name": "tictactoesocketio",
+  "version": "1.0.0",
+  "description": "A game made with nodejs, reactjs and socketio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "cd frontend && npm install",
+    "start-frontend": "cd frontend && npm run start",
+    "start-backend": "nodemon index.js"
+  },
+  "keywords": [
+    "react",
+    "sockets",
+    "game",
+    "node"
+  ],
+  "author": "Eduardo Rasgado Ruiz",
+  "license": "MIT",
+  "dependencies": {
+    "socket.io": "^2.2.0"
+  }
+}
