@@ -1,3 +1,5 @@
+const match = require("./matching");
+
 module.exports = function(io)
 {
     // connection handler
@@ -8,11 +10,13 @@ module.exports = function(io)
         {
             // register should include name and id
             console.info(`User registered: {${ user.name }, id: ${ user.id }`);
+            match().userConnect({socket, user});
         });
         // disconnection handler
         socket.on("disconnect", () =>
         {
             console.info(`User with ID: ${socket.id} has disconnected`);
+            match().userDisconnect(socket.id);
         });
         // message event handler
         socket.on("message", (id, msg) =>

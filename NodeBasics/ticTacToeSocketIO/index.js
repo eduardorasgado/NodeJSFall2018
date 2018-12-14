@@ -3,6 +3,9 @@
 const io = require("socket.io")(server);
 const port = require("./config").SERVER_PORT;
 
+// passing io object directly
+require("./backend/connect")(io);
+
 const banner = `
     ********************************
         TIC TAC TOE SERVER (>.<)
@@ -10,15 +13,6 @@ const banner = `
     Status: Online
     Listening on port: ${port}`
 ;
-
- // connection handler
- io.on("connection", (socket) =>
- {
-     socket.on("register", (user) =>
-     {
-         console.info(`User registered: ${user.name}`);
-     });
- });
 
  server.listen(port, () =>
  {

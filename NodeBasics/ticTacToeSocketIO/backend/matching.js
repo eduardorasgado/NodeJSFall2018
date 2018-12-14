@@ -11,7 +11,7 @@ module.exports = () =>
 
     function checkQueue()
     {
-        console.info(`Queues: { players: ${ Object.keys(players).length }, onWait: ${onWait.length }`)
+        console.info(`Queues: { players: ${ Object.keys(players).length }, onWait: ${onWait.length } }`)
         // print pool values
         while(onWait.length > 2)
         {
@@ -32,8 +32,10 @@ module.exports = () =>
                 onWait.push(socket.id);
             }
         },
+
         clear: () => clearInterval(loop),
-        userDisconnet: (id) => {
+
+        userDisconnect: (id) => {
             console.log("On disconnect, id");
             if(players[id].roomID && onMatch[players[id].roomID])
             {
