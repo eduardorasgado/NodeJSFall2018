@@ -1,4 +1,4 @@
-const match = require("./matching");
+const match = require("./matching")();
 
 module.exports = function(io)
 {
@@ -9,14 +9,14 @@ module.exports = function(io)
         socket.on("register", (user) =>
         {
             // register should include name and id
-            console.info(`User registered: {${ user.name }, id: ${ user.id }`);
-            match().userConnect({socket, user});
+            console.info(`User registered: {${ user.name }, id: ${ user.id } }`);
+            match.userConnect({socket, user});
         });
         // disconnection handler
         socket.on("disconnect", () =>
         {
             console.info(`User with ID: ${socket.id} has disconnected`);
-            match().userDisconnect(socket.id);
+            match.userDisconnect(socket.id);
         });
         // message event handler
         socket.on("message", (id, msg) =>

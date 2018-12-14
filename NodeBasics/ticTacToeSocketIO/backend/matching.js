@@ -11,14 +11,16 @@ module.exports = () =>
 
     function checkQueue()
     {
-        console.info(`Queues: { players: ${ Object.keys(players).length }, onWait: ${onWait.length } }`)
+        console.info(`Queues: { players: ${ Object.keys(players).length }, 
+        onWait: ${onWait.length }, onMarch:${ Object.keys(onMatch).length } }`);
         // print pool values
-        while(onWait.length > 2)
+        while(onWait.length >= 2)
         {
             console.log("Constructing room...");
             const p1 = players[onWait.pop()].user.name;
             const p2 = players[onWait.pop()].user.name;
             console.log(`We created a match for ${p1} and ${p2}`);
+
         }
     }
 
@@ -36,7 +38,7 @@ module.exports = () =>
         clear: () => clearInterval(loop),
 
         userDisconnect: (id) => {
-            console.log("On disconnect, id");
+            console.log("Player disconnected", id);
             if(players[id].roomID && onMatch[players[id].roomID])
             {
                 const roomID = players[id].roomID;
