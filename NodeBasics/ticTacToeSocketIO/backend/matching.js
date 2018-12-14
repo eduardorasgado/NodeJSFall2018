@@ -24,6 +24,21 @@ module.exports = () =>
         }
     }
 
+    function createMatch(p1ID, p2ID)
+    {
+        const roomID = p1ID + p2ID;
+        // adding a property to be able to reference players directly
+        players[p1ID].roomID = roomID;
+        players[p2ID].roomID = roomID;
+
+        // adding the room to Matches
+        if(!onMatch[roomID]) onMatch[roomID] = {};
+
+        // saving game states by emitting messages through the player socket
+        players[p1ID].socket.emit("gameState", {});
+        players[p2ID].socket.emit("gameState", {});
+    }
+
     return {
         // user: { socket, user }
         userConnect: ({ socket, user }) =>
